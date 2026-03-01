@@ -58,9 +58,9 @@
                         Email Address
                     </label>
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
+                        type="mail"
+                        id="mail"
+                        name="mail"
                         value="john@company.com"
                         class="w-full h-12 px-5 bg-gray-50/50 border border-zinc-100 rounded-2xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600/40 transition"
                     />
