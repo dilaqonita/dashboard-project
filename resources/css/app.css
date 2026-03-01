@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand: #9333ea;
+    --color-brand-light: #f3e8ff;
+    --color-green-dark: #007a55;
+    --color-green-mid: #00bc7d;
+    --color-dark: #1a1a1a;
+    --color-orange: #e17100;
+    --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: "Courier New", monospace;
+}
+
+/* Nav item */
+.nav-item {
+    @apply flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 transition-colors duration-150 no-underline whitespace-nowrap w-full;
+}
+.nav-item:hover {
+    @apply bg-gray-50 text-dark;
+}
+.nav-item.active {
+    @apply bg-brand-light text-brand font-semibold;
+}
+
+/* Sub menu item */
+.sub-item {
+    @apply flex items-center gap-2 pl-9 pr-3 py-2 rounded-lg text-xs font-medium text-gray-500 transition-colors duration-150 no-underline whitespace-nowrap;
+}
+.sub-item:hover {
+    @apply bg-gray-50 text-dark;
+}
+.sub-item.active {
+    @apply text-brand font-semibold;
+}
+
+/* Chevron */
+.chevron {
+    @apply transition-transform duration-200;
+}
+.chevron.open {
+    @apply rotate-180;
+}
+
+/* Sidebar transition */
+#sidebar {
+    transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 3px;
+}
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded;
+}
