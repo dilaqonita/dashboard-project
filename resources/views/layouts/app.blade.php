@@ -33,8 +33,9 @@
 
         {{-- ===== SIDEBAR ===== --}}
         <aside id="sidebar"
-               class="fixed lg:relative z-30 w-64 h-full bg-white border-r border-zinc-100 flex flex-col justify-between
-                      -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shrink-0">
+               class="relative z-30 h-full bg-white border-r border-zinc-100 flex flex-col justify-between
+                      overflow-hidden transition-[width] duration-300 ease-in-out shrink-0"
+               style="width:0">
 
             {{-- Logo + Close button (mobile) --}}
             <div>
@@ -330,24 +331,31 @@
         // ─────────────────────────────────────
         // SIDEBAR TOGGLE
         // ─────────────────────────────────────
-        const sidebar         = document.getElementById('sidebar');
-        const sidebarOverlay  = document.getElementById('sidebar-overlay');
-        const hamburgerOpen   = document.getElementById('hamburger-icon-open');
-        const hamburgerClose  = document.getElementById('hamburger-icon-close');
+        const sidebar        = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const hamburgerOpen  = document.getElementById('hamburger-icon-open');
+        const hamburgerClose = document.getElementById('hamburger-icon-close');
 
-        // State sidebar: di desktop default terbuka, di mobile default tertutup
-        let sidebarOpen = window.innerWidth >= 1024;
+        // Default: sidebar TERTUTUP
+        let sidebarOpen = false;
 
         function setSidebarState(open) {
             sidebarOpen = open;
+
             if (open) {
-                sidebar.classList.remove('-translate-x-full');
-                sidebarOverlay.classList.toggle('hidden', window.innerWidth >= 1024);
+                // Buka sidebar → lebarkan jadi 256px → konten terdorong ke kanan
+                sidebar.style.width = '16rem'; // w-64
+                // Mobile: tampilkan overlay gelap
+                if (window.innerWidth < 1024) {
+                    sidebarOverlay.classList.remove('hidden');
+                }
             } else {
-                sidebar.classList.add('-translate-x-full');
+                // Tutup sidebar → kempiskan ke 0
+                sidebar.style.width = '0';
                 sidebarOverlay.classList.add('hidden');
             }
-            // Toggle hamburger icon
+
+            // Swap icon hamburger
             hamburgerOpen.classList.toggle('hidden', open);
             hamburgerClose.classList.toggle('hidden', !open);
         }
@@ -356,16 +364,15 @@
             setSidebarState(!sidebarOpen);
         }
 
-        // Inisialisasi state sesuai ukuran layar
-        setSidebarState(window.innerWidth >= 1024);
+        // Inisialisasi: sidebar tertutup saat load
+        setSidebarState(false);
 
-        // Responsive: saat resize ke desktop, pastikan sidebar tampil
+        // Mobile resize: tutup sidebar kalau layar mengecil
         window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024) {
-                setSidebarState(true);
-                sidebarOverlay.classList.add('hidden');
+            if (window.innerWidth < 1024 && sidebarOpen) {
+                sidebarOverlay.classList.remove('hidden');
             } else {
-                setSidebarState(false);
+                sidebarOverlay.classList.add('hidden');
             }
         });
 
