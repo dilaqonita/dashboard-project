@@ -155,7 +155,7 @@
         <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
 
             {{-- ===== TOP NAVBAR ===== --}}
-            <header class="h-16 px-4 sm:px-6 bg-white/80 backdrop-blur border-b border-zinc-100 flex items-center justify-between shrink-0 z-10">
+            <header class="h-16 px-3 sm:px-6 bg-white/80 backdrop-blur border-b border-zinc-100 flex items-center justify-between shrink-0 z-10">
 
                 {{-- Kiri: Hamburger + Live Badge --}}
                 <div class="flex items-center gap-3">
